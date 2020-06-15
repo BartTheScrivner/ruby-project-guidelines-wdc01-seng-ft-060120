@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_15_212511) do
+ActiveRecord::Schema.define(version: 2020_06_15_212915) do
 
   create_table "podcasts", force: :cascade do |t|
     t.string "name"
@@ -21,6 +21,10 @@ ActiveRecord::Schema.define(version: 2020_06_15_212511) do
     t.string "user"
     t.string "podcast"
     t.integer "rating"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
   end
 
 end
