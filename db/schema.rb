@@ -10,11 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_15_211833) do
+ActiveRecord::Schema.define(version: 2020_06_15_212511) do
 
   create_table "podcasts", force: :cascade do |t|
     t.string "name"
     t.integer "episode_length_in_minutes"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.string "user"
+    t.string "podcast"
+    t.integer "rating"
   end
 
 end
