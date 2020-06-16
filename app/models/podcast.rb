@@ -18,4 +18,10 @@ class Podcast < ActiveRecord::Base
     puts self.all.group_by{|podcast| podcast.average_rating}.max
   end
 
+  def number_or_listeners
+    self.subscriptions.count
+  end
+
+
+
 end
