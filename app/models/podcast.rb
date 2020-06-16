@@ -22,6 +22,8 @@ class Podcast < ActiveRecord::Base
     self.subscriptions.count
   end
 
+  
+
 
 
 end
