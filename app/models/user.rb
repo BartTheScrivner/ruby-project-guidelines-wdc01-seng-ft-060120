@@ -22,5 +22,13 @@ class User < ActiveRecord::Base
   Podcast.where(episode_length_in_minutes: length_in_minutes)
  end
 
+ def update_rating(podcast_name, rating)
+    podcast_id = search_podcasts(podcast_name).id
+    #binding.pry
+   unrated_podcast = Subscription.find_or_create_by(user_id: self.id, podcast_id: podcast_id)
+   unrated_podcast.rating = rating  
+   unrated_podcast.save
+ end
+
 
 end
