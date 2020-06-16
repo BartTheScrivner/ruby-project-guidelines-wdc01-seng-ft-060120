@@ -18,5 +18,9 @@ class User < ActiveRecord::Base
   end
  end
 
+ def search_by_length(length_in_minutes)
+  Podcast.where(episode_length_in_minutes: length_in_minutes)
+ end
+
 
 end
