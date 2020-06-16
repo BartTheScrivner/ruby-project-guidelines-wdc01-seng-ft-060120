@@ -1,4 +1,4 @@
 class Subscription < ActiveRecord::Base 
-  has_many :podcasts
-  has_many :users
+  belongs_to :podcast
+  belongs_to :user
 end

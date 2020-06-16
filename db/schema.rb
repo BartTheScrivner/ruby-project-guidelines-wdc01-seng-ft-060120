@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 2020_06_15_212915) do
   end
 
   create_table "subscriptions", force: :cascade do |t|
-    t.string "user"
-    t.string "podcast"
+    t.integer "user_id"
+    t.integer "podcast_id"
     t.integer "rating"
   end
 
