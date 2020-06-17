@@ -3,6 +3,7 @@ class Interface
   def welcome
   puts "*" * 20
   puts "Welcome to Pod-if-i"
+  puts "*" * 20
   self.get_user
   self.menu_options
   end
@@ -24,6 +25,7 @@ class Interface
 
   def menu_options
     custom_welcome
+    puts "\n"
     puts "Please select from the following or type 'quit' to exit:"
     puts "1. My Subscriptions -- type 'subs' "
     puts "2. My Friends -- type 'friends' "
@@ -37,6 +39,7 @@ class Interface
   end
 
   def friends_menu
+    puts "\n"
     puts "Welcome to the Friends Menu. Select from the following or type 'menu' to get to main menu: "
     puts "1. Select Friend -- type 'select' "
     puts "2. See All Friends -- type 'all' "
@@ -72,6 +75,7 @@ class Interface
 
 
   def find_menu 
+    puts "\n"
     puts "Welcome to the Find Menu. Select from the following or type 'menu' to get to main menu: "
     puts "1. Search Podcasts by Name -- type 'name' "
     puts "2. Search Podcasts by Length -- type 'length' "
@@ -83,7 +87,10 @@ class Interface
   def find_options
     while self.input != 'menu'
       if self.input == 'name'
-        puts "Select Podcast"
+        self.input = self.get_menu_selection
+        puts "...searching..."
+        podcast = self.current_user.search_podcasts(self.input)
+        self.current_user.print_podcast_details(podcast)
         self.find_menu
       elsif self.input == 'length'
         puts "Select Length of Podcast"
@@ -103,7 +110,7 @@ class Interface
     # binding.pry
     while self.input != 'quit'
       if self.input == 'subs'
-        self.current_user.podcasts
+        self.current_user.print_subs
         menu_options
       elsif self.input == 'friends'
         self.friends_menu

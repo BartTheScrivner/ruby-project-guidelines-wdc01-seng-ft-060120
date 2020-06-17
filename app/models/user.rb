@@ -6,6 +6,14 @@ class User < ActiveRecord::Base
  has_many :subscriptions
  has_many :podcasts, through: :subscriptions
 
+ def print_subs
+  puts "*" * 20
+  self.podcasts.each do |podcast|
+    puts podcast.name
+    puts "*" * 20
+  end
+end
+
  def search_podcasts(podcast_name)
   podcast = Podcast.where('lower(name) = ?', podcast_name.downcase).first
   if podcast == nil
@@ -13,6 +21,13 @@ class User < ActiveRecord::Base
   else
     podcast
   end
+ end
+
+ def print_podcast_details(podcast)
+  puts "\n"
+  puts "#{podcast.name}"
+  puts "-" * 20
+  puts "Avg. Episode Length: #{podcast.episode_length_in_minutes} min."
  end
 
  def subscribe_by_name(podcast_name)
@@ -51,14 +66,17 @@ class User < ActiveRecord::Base
  def show_friends
   self.followees.map{|followee| followee.name}.each do |followee_name|
     puts followee_name
+    puts "*" * 20
   end
  end
 
  def friends_list ##TODO format list
   self.followees.map do |followee|
     puts "#{followee.name}: " 
+    puts "-" * 20
     followee.podcasts.map {|podcast| podcast.name}.each do |podcast_name|
       puts podcast_name
+      puts "*" * 20
     end
   end
  end
