@@ -80,7 +80,8 @@ class Interface
     puts "1. Search Podcasts by Name -- type 'name' "
     puts "2. Search Podcasts by Length -- type 'length' "
     puts "3. See Most Popular Podcasts -- type 'popular' "
-    puts "4. Subscribe by Name -- type 'subscribe' "
+    puts "4. See Most Popular Podcast Among Friends -- type 'trending' "
+    puts "5. Subscribe by Name -- type 'subscribe' "
     self.input = self.get_menu_selection
     self.find_options
   end
@@ -95,10 +96,16 @@ class Interface
       elsif self.input == 'length'
         puts "Select Length of Podcast in Minutes"
         self.input = self.get_menu_selection
+        puts "...searching..."
         self.current_user.search_by_length(self.input)
         self.find_menu
       elsif self.input == 'popular'
-     puts Podcast.most_popular_overall
+        puts "\n"
+        puts Podcast.most_popular_overall
+        self.find_menu
+      elsif self.input == 'trending'
+        puts "\n"
+        self.current_user.most_popular_among_friends
         self.find_menu
       elsif self.input == 'subscribe'
         self.input = self.get_menu_selection

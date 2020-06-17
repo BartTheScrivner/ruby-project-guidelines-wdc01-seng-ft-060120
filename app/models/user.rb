@@ -73,7 +73,19 @@ end
   end
  end
 
- def friends_list ##TODO format list
+ def most_popular_among_friends
+  podcasts = self.followees.map do |followee|
+    followee.podcasts
+  end
+  most_popular = podcasts.flatten.max_by{|podcast| podcasts.flatten.count(podcast)}
+  puts "\n"
+  puts "#{most_popular.name}"
+  puts "-" * 20
+  puts "Rating: #{most_popular.average_rating}"
+  puts "Listeners: #{most_popular.number_of_listeners}"
+ end
+
+ def friends_list 
   self.followees.map do |followee|
     puts "#{followee.name}: " 
     puts "-" * 20
