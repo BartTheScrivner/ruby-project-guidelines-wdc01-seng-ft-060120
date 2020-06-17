@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
    unrated_podcast.save
  end
 
- def friends_list
+ def friends_list ##TODO format list
   self.followees.map {|followee| pp followee.podcasts}
  end
 
