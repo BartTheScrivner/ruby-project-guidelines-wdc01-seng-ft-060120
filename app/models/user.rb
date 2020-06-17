@@ -34,6 +34,12 @@ class User < ActiveRecord::Base
    unrated_podcast.save
  end
 
+ def find_friend_by_name(name)
+    friend = self.followees.find {|followee| followee.name == name}
+    pp friend.podcasts
+     
+ end
+
  def friends_list ##TODO format list
   self.followees.map {|followee| pp followee.podcasts}
  end
