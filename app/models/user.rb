@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
  has_many :followees, through: :following 
  has_many :subscriptions
  has_many :podcasts, through: :subscriptions
-####TODO: downcasing
+
  def search_podcasts(podcast_name)
   podcast = Podcast.where('lower(name) = ?', podcast_name.downcase).first
   if podcast == nil
@@ -43,6 +43,10 @@ class User < ActiveRecord::Base
     friend2 = User.where('lower(name)=?', name.downcase).first
     binding.pry
         Follow.create(follower_id: self.id, followee_id: friend2.id)
+ end
+
+ def show_friends
+  self.followees.map{|followee| followee.name}
  end
 
  def friends_list ##TODO format list

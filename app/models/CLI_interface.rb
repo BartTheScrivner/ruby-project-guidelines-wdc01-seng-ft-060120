@@ -49,12 +49,12 @@ class Interface
   def friends_selection
     while self.input != 'menu'
       if self.input == 'select'
-        puts "Select a Friend"
+        puts "Select a Friend: "
         self.input = self.get_menu_selection
         self.current_user.find_friend_by_name(self.input)
         self.friends_menu
       elsif self.input == 'all'
-        puts "See all Friends"
+        self.current_user.show_friends
         self.friends_menu
       elsif self.input == 'allsubs'
         puts "See all Friends Subscriptions"  
