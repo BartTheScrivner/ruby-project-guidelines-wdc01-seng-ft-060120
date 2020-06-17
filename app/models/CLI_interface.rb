@@ -41,6 +41,7 @@ class Interface
     puts "1. Select Friend -- type 'select' "
     puts "2. See All Friends -- type 'all' "
     puts "3. See All Friends' Subscriptions -- type 'allsubs' "
+    puts "4. Add New Friend -- type 'follow' "
     self.input = self.get_menu_selection
     self.friends_selection
   end
@@ -49,6 +50,8 @@ class Interface
     while self.input != 'menu'
       if self.input == 'select'
         puts "Select a Friend"
+        self.input = self.get_menu_selection
+        self.current_user.find_friend_by_name(self.input)
         self.friends_menu
       elsif self.input == 'all'
         puts "See all Friends"
@@ -56,6 +59,10 @@ class Interface
       elsif self.input == 'allsubs'
         puts "See all Friends Subscriptions"  
         self.friends_menu 
+      elsif self.input == 'follow'
+        self.input = self.get_menu_selection
+        self.current_user.follow_person(self.input)
+        self.friends_menu
       else
         puts "Improper selection. Please try again!"   
         self.friends_menu

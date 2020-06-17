@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
  has_many :podcasts, through: :subscriptions
 ####TODO: downcasing
  def search_podcasts(podcast_name)
-  podcast = Podcast.find_by(name: podcast_name)
+  podcast = Podcast.where('lower(name) = ?', podcast_name.downcase).first
   if podcast == nil
     puts "Sorry we can't find that one."
   else
@@ -37,7 +37,12 @@ class User < ActiveRecord::Base
  def find_friend_by_name(name)
     friend = self.followees.find {|followee| followee.name == name}
     pp friend.podcasts
-     
+ end
+
+ def follow_person(name)
+    friend2 = User.where('lower(name)=?', name.downcase).first
+    binding.pry
+        Follow.create(follower_id: self.id, followee_id: friend2.id)
  end
 
  def friends_list ##TODO format list
