@@ -19,9 +19,9 @@ end
   if podcast == nil
     puts "Sorry we can't find that one."
   else
+    self.print_podcast_details(podcast)
     podcast
   end
-  self.print_podcast_details(podcast)
  end
 
  def print_podcast_details(podcast)

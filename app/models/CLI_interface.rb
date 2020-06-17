@@ -14,7 +14,7 @@ class Interface
 
   def get_user
     puts "Enter user name: "
-    user = gets.chomp()
+    user = gets.strip
     self.current_user = User.find_or_create_by(name: user)
   end
 
