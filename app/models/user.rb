@@ -21,6 +21,7 @@ end
   else
     podcast
   end
+  self.print_podcast_details(podcast)
  end
 
  def print_podcast_details(podcast)
@@ -38,7 +39,10 @@ end
  end
 
  def search_by_length(length_in_minutes)
-  Podcast.where(episode_length_in_minutes: length_in_minutes)
+  arr_of_pod = Podcast.where(episode_length_in_minutes: length_in_minutes)
+  arr_of_pod.each do |podcast|
+    self.print_podcast_details(podcast)
+  end
  end
 
  def update_rating(podcast_name, rating)

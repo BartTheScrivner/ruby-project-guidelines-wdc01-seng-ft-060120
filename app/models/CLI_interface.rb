@@ -89,14 +89,15 @@ class Interface
       if self.input == 'name'
         self.input = self.get_menu_selection
         puts "...searching..."
-        podcast = self.current_user.search_podcasts(self.input)
-        self.current_user.print_podcast_details(podcast)
+        self.current_user.search_podcasts(self.input)
         self.find_menu
       elsif self.input == 'length'
-        puts "Select Length of Podcast"
+        puts "Select Length of Podcast in Minutes"
+        self.input = self.get_menu_selection
+        self.current_user.search_by_length(self.input)
         self.find_menu
       elsif self.input == 'popular'
-      puts "Select popular podcast"
+     puts Podcast.most_popular_overall
         self.find_menu
       else
         puts "Improper selection. Please try again!"
