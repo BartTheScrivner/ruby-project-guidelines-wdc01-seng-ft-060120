@@ -57,7 +57,7 @@ class Interface
         self.current_user.show_friends
         self.friends_menu
       elsif self.input == 'allsubs'
-        puts "See all Friends Subscriptions"  
+        self.current_user.friends_list  
         self.friends_menu 
       elsif self.input == 'follow'
         self.input = self.get_menu_selection

@@ -35,22 +35,32 @@ class User < ActiveRecord::Base
  end
 
  def find_friend_by_name(name)
-    friend = self.followees.find {|followee| followee.name == name}
-    pp friend.podcasts
+    binding.pry
+    friend = self.followees.find {|followee| followee.name.downcase == name}
+    puts "#{friend.name}: " 
+    friend.podcasts.map {|podcast| podcast.name}.each do |podcast_name|
+      puts podcast_name
+    end
  end
 
  def follow_person(name)
     friend2 = User.where('lower(name)=?', name.downcase).first
-    binding.pry
-        Follow.create(follower_id: self.id, followee_id: friend2.id)
+    Follow.find_or_create_by(follower_id: self.id, followee_id: friend2.id)
  end
 
  def show_friends
-  self.followees.map{|followee| followee.name}
+  self.followees.map{|followee| followee.name}.each do |followee_name|
+    puts followee_name
+  end
  end
 
  def friends_list ##TODO format list
-  self.followees.map {|followee| pp followee.podcasts}
+  self.followees.map do |followee|
+    puts "#{followee.name}: " 
+    followee.podcasts.map {|podcast| podcast.name}.each do |podcast_name|
+      puts podcast_name
+    end
+  end
  end
 
 
