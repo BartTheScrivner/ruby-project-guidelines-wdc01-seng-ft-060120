@@ -44,12 +44,45 @@ class Interface
     self.input = self.get_menu_selection
   end
 
+  def friends_selection
+    while self.input != 'menu'
+    if self.input == 'select'
+      puts "Select a Friend"
+      self.friends_menu
+    elsif self.input == 'all'
+      puts "See all Friends"
+      self.friends_menu
+    elsif self.input == 'allsubs'
+      puts "See all Friends Subscriptions"  
+      self.friends_menu 
+    else
+      puts "Improper selection. Please try again!"   
+    end
+      end
+    end
   def find_menu 
     puts "Welcome to the Find Menu. Select from the following or type 'menu' to get to main menu: "
     puts "1. Search Podcasts by Name -- type 'name' "
     puts "2. Search Podcasts by Length -- type 'length' "
     puts "3. See Most Popular Podcasts -- type 'popular' "
     self.input = self.get_menu_selection
+  end
+
+  def find_options
+    while self.input != 'menu'
+    if self.input == 'name'
+      puts "Select Podcast"
+      self.find_menu
+    elsif self.input == 'length'
+      puts "Select Length of Podcast"
+      self.find_menu
+    elsif self.input == 'popular'
+    puts "Select popular podcast"
+      self.find_menu
+    else
+      puts "Improper selection. Please try again!"
+    end
+  end
   end
 
   def run
