@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
  has_many :followees, through: :following 
  has_many :subscriptions
  has_many :podcasts, through: :subscriptions
-
+####TODO: downcasing
  def search_podcasts(podcast_name)
   podcast = Podcast.find_by(name: podcast_name)
   if podcast == nil
