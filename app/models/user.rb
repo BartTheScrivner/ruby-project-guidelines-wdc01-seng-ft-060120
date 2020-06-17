@@ -50,7 +50,6 @@ end
  end
 
  def find_friend_by_name(name)
-    binding.pry
     friend = self.followees.find {|followee| followee.name.downcase == name}
     puts "#{friend.name}: " 
     friend.podcasts.map {|podcast| podcast.name}.each do |podcast_name|
