@@ -5,6 +5,7 @@ class Interface
   puts "Welcome to Pod-if-i"
   puts "*" * 20
   self.get_user
+  custom_welcome
   self.menu_options
   end
 
@@ -24,7 +25,6 @@ class Interface
 
 
   def menu_options
-    custom_welcome
     puts "\n"
     puts "Please select from the following or type 'quit' to exit:"
     puts "1. My Subscriptions -- type 'subs' "
