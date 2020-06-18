@@ -38,6 +38,35 @@ class Interface
     selection.downcase 
   end
 
+  def sub_menu
+    puts "\n"
+    puts "Welcome to the Subscription Menu. Select from the following or type 'menu' to get to main menu: "
+    puts "1. Show All Subscribed Podcasts -- type 'show' "
+    puts "2. Rate a Podcast -- type 'rate' "
+    self.input = self.get_menu_selection
+    self.sub_options
+  end
+
+  def sub_options
+    while self.input != 'menu'
+      if self.input == 'show'
+        self.current_user.print_subs
+        self.sub_menu
+      elsif self.input == 'rate'
+        puts "What podcast are you rating?"
+        podcast = self.get_menu_selection
+        puts "How many stars (out of 5)?"
+        rating = self.get_menu_selection
+        self.current_user.update_rating(podcast, rating)
+        self.sub_menu
+      else
+        puts "Improper selection. Please try again!"   
+        self.sub_menu
+      end
+    end
+  end
+
+
   def friends_menu
     puts "\n"
     puts "Welcome to the Friends Menu. Select from the following or type 'menu' to get to main menu: "
@@ -124,7 +153,7 @@ class Interface
     # binding.pry
     while self.input != 'quit'
       if self.input == 'subs'
-        self.current_user.print_subs
+        self.sub_menu
         menu_options
       elsif self.input == 'friends'
         self.friends_menu

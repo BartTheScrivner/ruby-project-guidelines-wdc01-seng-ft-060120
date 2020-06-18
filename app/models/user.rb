@@ -6,10 +6,15 @@ class User < ActiveRecord::Base
  has_many :subscriptions
  has_many :podcasts, through: :subscriptions
 
+ def see_user_rating(podcast)
+  sub = Subscription.all.find{|sub| sub.podcast_id == podcast.id && sub.user_id == self.id}
+  sub.rating
+ end
+
  def print_subs
   puts "*" * 20
   self.podcasts.each do |podcast|
-    puts podcast.name
+    puts "#{podcast.name}  || Your Rating: #{self.see_user_rating(podcast)}" 
     puts "*" * 20
   end
 end
@@ -29,6 +34,8 @@ end
   puts "#{podcast.name}"
   puts "-" * 20
   puts "Avg. Episode Length: #{podcast.episode_length_in_minutes} min."
+  puts "Avg. Rating: #{podcast.average_rating}"
+  puts "Number of Listeners: #{podcast.number_of_listeners}"
  end
 
  def subscribe_by_name(podcast_name)
