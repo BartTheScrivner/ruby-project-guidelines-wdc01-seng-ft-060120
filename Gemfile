@@ -7,3 +7,5 @@ gem 'sqlite3', '~> 1.3', '>= 1.3.13'
 gem "pry"
 gem 'rake'
 gem "require_all"
+gem "rspec"
+gem "tty-font"

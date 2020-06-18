@@ -1,5 +1,6 @@
 class Interface 
   attr_accessor :input, :current_user
+  
   def welcome
   puts "*" * 20
   puts "Welcome to Pod-if-i"
