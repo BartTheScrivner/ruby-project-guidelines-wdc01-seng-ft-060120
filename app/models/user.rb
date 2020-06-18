@@ -47,26 +47,36 @@ end
 
  def update_rating(podcast_name, rating)
     podcast_id = search_podcasts(podcast_name).id
-    #binding.pry
-   unrated_podcast = Subscription.find_or_create_by(user_id: self.id, podcast_id: podcast_id)
-   unrated_podcast.rating = rating  
-   unrated_podcast.save
+    unrated_podcast = Subscription.find_or_create_by(user_id: self.id, podcast_id: podcast_id)
+    unrated_podcast.rating = rating  
+    unrated_podcast.save
  end
 
  def find_friend_by_name(name)
     friend = self.followees.find {|followee| followee.name.downcase == name}
-    puts "#{friend.name}: " 
-    friend.podcasts.map {|podcast| podcast.name}.each do |podcast_name|
-      puts podcast_name
+    if friend == nil
+      puts "Sorry, you're not friends with #{name.capitalize} yet. Try using 'follow'... "
+    else
+      puts "#{friend.name}: " 
+      friend.podcasts.map {|podcast| podcast.name}.each do |podcast_name|
+        puts podcast_name
+      end
     end
  end
 
- def follow_person(name)
-    friend2 = User.where('lower(name)=?', name.downcase).first
-    Follow.find_or_create_by(follower_id: self.id, followee_id: friend2.id)
+ def follow_person(name) 
+    friend = User.where('lower(name)=?', name.downcase).first
+    if friend == nil
+      puts "Sorry, looks like #{name.capitalize} isn't using Pod-if-i yet."
+    else
+      Follow.find_or_create_by(follower_id: self.id, followee_id: friend.id)
+      self.reload
+      puts "You are now following #{friend.name}"
+    end
  end
 
  def show_friends
+  puts "*" * 20
   self.followees.map{|followee| followee.name}.each do |followee_name|
     puts followee_name
     puts "*" * 20

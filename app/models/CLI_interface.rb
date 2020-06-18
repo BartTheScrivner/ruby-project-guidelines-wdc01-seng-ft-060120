@@ -64,6 +64,7 @@ class Interface
         self.friends_menu 
       elsif self.input == 'follow'
         self.input = self.get_menu_selection
+        puts "...searching...\n"
         self.current_user.follow_person(self.input)
         self.friends_menu
       else
