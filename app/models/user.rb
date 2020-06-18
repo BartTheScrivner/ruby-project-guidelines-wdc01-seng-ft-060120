@@ -53,6 +53,8 @@ end
  end
 
  def find_friend_by_name(name)
+  puts "...searching...\n"
+  puts "*" * 20
     friend = self.followees.find {|followee| followee.name.downcase == name}
     if friend == nil
       puts "Sorry, you're not friends with #{name.capitalize} yet. Try using 'follow'... "
@@ -96,13 +98,14 @@ end
  end
 
  def friends_list 
+  puts "*" * 20
   self.followees.map do |followee|
     puts "#{followee.name}: " 
     puts "-" * 20
     followee.podcasts.map {|podcast| podcast.name}.each do |podcast_name|
       puts podcast_name
-      puts "*" * 20
     end
+    puts "*" * 20
   end
  end
 
