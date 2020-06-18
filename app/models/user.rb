@@ -34,7 +34,7 @@ end
  def subscribe_by_name(podcast_name)
   podcast = search_podcasts(podcast_name)
   if !podcast.nil?
-    Subscription.create(user_id: self.id, podcast_id: podcast.id)
+    Subscription.find_or_create_by(user_id: self.id, podcast_id: podcast.id)
   end
  end
 
@@ -59,10 +59,12 @@ end
     if friend == nil
       puts "Sorry, you're not friends with #{name.capitalize} yet. Try using 'follow'... "
     else
-      puts "#{friend.name}: " 
+      puts "#{friend.name}: "
+      puts "-" * 20 
       friend.podcasts.map {|podcast| podcast.name}.each do |podcast_name|
         puts podcast_name
       end
+      puts "*" * 20
     end
  end
 
