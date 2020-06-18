@@ -13,12 +13,6 @@ describe User do
         expect(jennifer.podcasts).to include(hmay)
     end
 
-    it "can update a rating" do
-        jennifer.update_rating("How Married Are You", 5)
-        jennifer_hmay.reload
-        expect(jennifer.see_user_rating(hmay)).to eql(5)
- 
-    end
 end
 
 
